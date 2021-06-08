@@ -7,13 +7,11 @@ function TodoItem ({ todo, index, onChange }) {
     return (
         <li>
             <span><div className='kort'>
+            <input type='checkbox' onChange={() => onChange(todo.id) /* , console.log(todo.id) */}/>
             <strong>{ index + 1 + '. '}</strong>
             {todo.title}
-            <input type='checkbox' onChange={() => onChange(todo.id) /* , console.log(todo.id) */}/>
             <div className='buttons'>
-            <button className='up'>upp</button>
-            <button className='down'>ner</button>
-            <button className='down'>&times;</button>
+            <button className='done'>&times;<span>DONE</span></button>
             </div>
             </div>
             
