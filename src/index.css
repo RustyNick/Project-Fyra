@@ -19,7 +19,7 @@ code {
 }
 
 .list {
-  width: 255px;
+  width: 260px;
   height: 1000px;
   background-color: rgb(206, 206, 206);
   display: flex;
@@ -35,10 +35,10 @@ code {
   width: 250px;
   flex-direction: column;
   border-radius: 28px;
-  height: 130px;
+  min-height: 130px;
   align-items: center;
   border-style: groove;
-  
+  padding: 3px;
 }
 
 .kort {
