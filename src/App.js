@@ -8,13 +8,31 @@ const style = {
 }
 
 function App() {
+  let todos = [
+    {id: 1, complated: false, title: 'måndag'},
+    {id: 2, complated: false, title: 'tisdag'},
+    {id: 3, complated: false, title: 'onsdag'},
+    {id: 4, complated: false, title: 'torsdag'},
+    {id: 5, complated: false, title: 'fredag'}
+  ]
+
+function toggleTodo(id) {
+/*   console.log('todo id', id),
+ */  todos = todos.map(todo=>{
+    if(todo.id===id){
+      todo.complated=!todo.complated
+    }
+    return todo
+  })
+}
+
   return (
     <div className="wrapper">
       <div className="App">
         <Calendar style={style} width="350px" />
       </div>
       <h1>Trello</h1>
-      < TodoList></TodoList>
+      < TodoList todos={todos} onToggle={toggleTodo}></TodoList>
     </div>
   );
 
