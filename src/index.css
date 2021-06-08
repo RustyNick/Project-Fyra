@@ -50,13 +50,25 @@ code {
 
 .newCard{
   width: 150px;
+  margin-top: 5px;
+}
+.removeCard{
+  margin-top: 5px;
+  width: 150px;
 }
 
 .newList{
   height: 20px;
   width: 150px;
+  margin: 5px;
 }
 
 .done{
   text-decoration: line-through;
+}
+
+.listCantainer{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
 }

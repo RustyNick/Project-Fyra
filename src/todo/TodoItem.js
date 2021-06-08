@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import PropTypes from 'prop-types'
-/* import classes from '*.module.css' */
 import Context from '../context'
 
 
@@ -17,12 +16,11 @@ function TodoItem ({ todo, index, onChange }) {
             <div className='kort'><input 
             type='checkbox'
             checked={todo.complated}
-            onChange={() => onChange(todo.id) 
-                /* , console.log(todo.id) */}/>
+            onChange={() => onChange(todo.id)}/>
             <strong>{ index + 1 + '. '}</strong>
             {todo.title}
             <div className='buttons'>
-            <button className='doneBtn' onClick={removeTodo.bind(null, todo.id)/* () => removeTodo(todo.id) */}><span>DONE</span></button>
+            <button className='doneBtn' onClick={/* removeTodo.bind(null, todo.id) */() => removeTodo(todo.id) /* 'alternativ methode' */}><span>KLART</span></button>
             </div>
             </div>
             

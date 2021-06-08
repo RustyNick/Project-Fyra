@@ -19,26 +19,6 @@ const styles = {
         </ul>        
     )
 }
-/* function myfunc () {
-    return (
-        <div>
-<p>det är main div</p>
-        </div>
-        )
-    } */
-
-    const myelement = React.createElement(
-    'div',
-    {id: "header", className: "header"}, 
-    'Child element...'
-    )
-
-console.log (myelement)
-
-/* ReactDOM.render (
-    myelement, 
-    document.querySelector('#app')
-) */
 
 TodoList.propTypes = {
     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
