@@ -38,22 +38,15 @@ code {
   height: 130px;
   align-items: center;
   border-style: groove;
+  
 }
 
 .kort {
   width: 249px;
   justify-content: space-between;
   display: flex;
-  
 }
 
-.buttons {
-
-  justify-content: space-around;
-  display: flex;
-  flex-direction: column;
-
-}
 
 .newCard{
   width: 150px;
@@ -62,4 +55,8 @@ code {
 .newList{
   height: 20px;
   width: 150px;
+}
+
+.done{
+  text-decoration: line-through;
 }
