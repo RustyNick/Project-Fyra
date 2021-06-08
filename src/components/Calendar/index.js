@@ -2,6 +2,7 @@ import React from "react";
 import moment from 'moment';
 import './calendar.css'
 import reportWebVitals from "../../reportWebVitals";
+import { object } from "prop-types";
 
 export default class Calendar extends React.Component {
     state = {
@@ -15,7 +16,7 @@ export default class Calendar extends React.Component {
         super(props);
         this.width = props.width || "350px";
         this.style = props.style || {};
-        this.style.width = this.width;
+        this.style.width = this.width; // add this
     }
 
     weekdays = moment.weekdays(); //regular names
@@ -51,6 +52,24 @@ export default class Calendar extends React.Component {
         this.setState({
             dateContext: dateContext
         });
+    }
+
+    nextMonth = () => {
+        let dateContext = Object.assign({}, this.state.dateContext)
+        dateContext = moment(dateContext).add(1, "month");
+        this.setState({
+            dateContext: dateContext
+        });
+        this.props.onNextMonth && this.props.onNextMonth();
+    }
+
+    prevMonth = () => {
+        let dateContext = Object.assign({}, this.state.dateContext)
+        dateContext = moment(dateContext).subtract(1, "month");
+        this.setState({
+            dateContext: dateContext
+        });
+        this.props.onPrevMonth && this.props.onPrevMonth();
     }
 
     onSelectChange = (e, data) => {
@@ -95,13 +114,57 @@ export default class Calendar extends React.Component {
 
     }
 
+    showYearEditor = () => {
+        this.setState({
+            showYearNav: true
+        });
+    }
+
+
+    setYear = (year) => {
+        let dateContext = Object.assign({}, this.state.dateContext);
+        dateContext = moment(dateContext).set("year", year);
+        this.setState({
+            dateContext: dateContext
+        });
+    }
+    onYearChange = (e) => {
+        this.setYear(e.target.value);
+        this.props.onYearChange && this.props.onYearChange(e, e.target.value);
+    }
+
+    onKeyUpYear = (e) => {
+        if (e.which == 13 || e.which == 27) {
+            this.setYear(e.target.value);
+            this.setState({
+                showYearNav: false
+            })
+        }
+    }
 
     YearNav = () => {
         return (
-            <span>
-                {this.year}
-            </span>
+            this.state.showYearNav ?
+                <input
+                    defaultValue={this.year()}
+                    className="editor-year"
+                    ref={(yearInput) => { this.yearInput = yearInput }}
+                    onKeyUp={(e) => this.onKeyUpYear(e)}
+                    onChange={(e) => this.onYearChange(e)}
+                    type="number"
+                    placeholder="year" />
+                :
+
+                <span
+                    className="label-year"
+                    onDoubleClick={(e) => { this.showYearEditor() }}>
+                    {this.year()}
+                </span>
         );
+    }
+
+    onDayClick = (e, day) => {
+        this.props.onDayClick && this.props.onDayClick(e, day);
     }
 
     render() {
@@ -125,7 +188,7 @@ export default class Calendar extends React.Component {
             let className = (d == this.currentDay() ? "day current-day" : "day");
             daysInMonth.push(
                 <td key={d} className={className} >
-                    <span>{d}</span>
+                    <span onCLick={(e) => { this.onDayClick(e, d) }}>{d}</span>
                 </td>
             );
         }
@@ -168,6 +231,14 @@ export default class Calendar extends React.Component {
                                 <this.monthNav />
                                 {" "}
                                 <this.YearNav />
+                            </td>
+                            <td colSpan="2" className="nav-month">
+                                <i class=" prev fas fa-chevron-left"
+                                    onClick={(e) => { this.prevMonth() }}>
+                                </i>
+                                <i class="prev fas fa-chevron-right"
+                                    onClick={(e) => { this.nextMonth() }}>
+                                </i>
                             </td>
                         </tr>
                     </thead>
