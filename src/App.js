@@ -1,31 +1,43 @@
 import React from 'react';
 import TodoList from './Todo/TodoList'
+import Context from './context'
 
 function App() {
-  let todos = [
-    {id: 1, complated: false, title: 'måndag'},
-    {id: 2, complated: false, title: 'tisdag'},
-    {id: 3, complated: false, title: 'onsdag'},
-    {id: 4, complated: false, title: 'torsdag'},
-    {id: 5, complated: false, title: 'fredag'}
-  ]
+  const [todos, setTodos] = React.useState([
+    {id: 1, complated: false, title: 'handla'},
+    {id: 2, complated: false, title: 'lämna böker'},
+    {id: 3, complated: false, title: 'klippa gräs'},
+  ])
+  
 
 function toggleTodo(id) {
 /*   console.log('todo id', id),
- */  todos = todos.map(todo=>{
+ */  setTodos (
+   todos.map(todo=>{
     if(todo.id===id){
       todo.complated=!todo.complated
     }
     return todo
   })
+  )
 }
-
+function removeTodo (id){
+setTodos(todos.filter(todo => todo.id !== id ))
+}
   return (
-    <div className="wrapper">
-      <h1>Trello</h1>
-      < TodoList todos={todos} onToggle={toggleTodo}></TodoList>
+    <Context.Provider value={{removeTodo}}>
+    <div className="main">
+      <div className="list">
+          <h5>Lista A</h5>
+        <div className="wrapper">
+          < TodoList todos={todos} onToggle={toggleTodo}></TodoList>
+        </div>
+        <button className="newCard">Lägga till nytt kort</button>
+      </div>
+        <button className="newList">Skapa ny lista</button>
     </div>
-  );
+  </Context.Provider>
+  )
 }
 
 export default App;
