@@ -19,7 +19,7 @@ code {
 }
 
 .list {
-  width: 255px;
+  width: 260px;
   height: 1000px;
   background-color: rgb(206, 206, 206);
   display: flex;
@@ -35,10 +35,10 @@ code {
   width: 250px;
   flex-direction: column;
   border-radius: 28px;
-  height: 130px;
+  min-height: 130px;
   align-items: center;
   border-style: groove;
-  
+  padding: 3px;
 }
 
 .kort {
@@ -50,13 +50,25 @@ code {
 
 .newCard{
   width: 150px;
+  margin-top: 5px;
+}
+.removeCard{
+  margin-top: 5px;
+  width: 150px;
 }
 
 .newList{
   height: 20px;
   width: 150px;
+  margin: 5px;
 }
 
 .done{
   text-decoration: line-through;
+}
+
+.listCantainer{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
 }

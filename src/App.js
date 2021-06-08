@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react'
 import TodoList from './Todo/TodoList'
 import Context from './context'
+import AddTodo from './Todo/AddTodo';
 
 function App() {
-  const [todos, setTodos] = React.useState([
-    {id: 1, complated: false, title: 'handla'},
-    {id: 2, complated: false, title: 'lämna böker'},
-    {id: 3, complated: false, title: 'klippa gräs'},
-  ])
+  const [todos, setTodos] = React.useState([])
   
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
+      .then(response => response.json())
+      .then((todos) => {
+        setTodos(todos)
+      });
+     }, [])
 
 function toggleTodo(id) {
-/*   console.log('todo id', id),
- */  setTodos (
+  setTodos (
    todos.map(todo=>{
     if(todo.id===id){
       todo.complated=!todo.complated
@@ -22,7 +25,16 @@ function toggleTodo(id) {
   )
 }
 function removeTodo (id){
-setTodos(todos.filter(todo => todo.id !== id ))
+  console.log('ta bort todo från listan', id)
+  setTodos(todos.filter(todo => todo.id !== id ))
+}
+function addTodo(title){
+  console.log('lägga till en Todo', title)
+  setTodos(todos.concat([{
+    title,
+    id: Date.now(),
+    complated: false
+  }]))
 }
   return (
     <Context.Provider value={{removeTodo}}>
@@ -30,11 +42,17 @@ setTodos(todos.filter(todo => todo.id !== id ))
       <div className="list">
           <h5>Lista A</h5>
         <div className="wrapper">
-          < TodoList todos={todos} onToggle={toggleTodo}></TodoList>
+          { todos.length ? <TodoList todos={todos} onToggle={toggleTodo}/>:<p>Ingen att gora</p>}
+          
+          {<AddTodo onCreate={addTodo}/>}
         </div>
         <button className="newCard">Lägga till nytt kort</button>
+        <button className="removeCard">Ta bort kort</button>
       </div>
-        <button className="newList">Skapa ny lista</button>
+        <div className='listCantainer'>
+          <button className="newList">Skapa ny lista</button>
+          <button className="removeList">Ta bort sista lista</button>
+        </div>
     </div>
   </Context.Provider>
   )
