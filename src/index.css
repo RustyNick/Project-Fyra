@@ -12,36 +12,63 @@ code {
     monospace;
 }
 
-.wrapper {
-  margin: 0 auto;
-
-  width: 100%;
-  background-color: blueviolet;
-
-  width: 600px;
-  background-color: rgba(241, 185, 185, 0.658);
+.main {
+  background-color: silver;
+  display: flex;
   justify-content: center;
+}
+
+.list {
+  width: 260px;
+  height: 1000px;
+  background-color: rgb(206, 206, 206);
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
 
+.wrapper {
+  margin: 0 auto;
+  background-color: rgba(147, 226, 226, 0.658);
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+  flex-direction: column;
+  border-radius: 28px;
+  min-height: 130px;
+  align-items: center;
+  border-style: groove;
+  padding: 3px;
 }
 
 .kort {
-  width: 400px;
-  background-color:rgb(201, 150, 55);
-  padding: 25px;
-  margin: 30px auto;
-  border-radius: 28px;
+  width: 249px;
   justify-content: space-between;
   display: flex;
-  
 }
 
-.buttons {
-  height: 50px;
-  width: 100px;
-  justify-content: space-around;
+
+.newCard{
+  width: 150px;
+  margin-top: 5px;
+}
+.removeCard{
+  margin-top: 5px;
+  width: 150px;
+}
+
+.newList{
+  height: 20px;
+  width: 150px;
+  margin: 5px;
+}
+
+.done{
+  text-decoration: line-through;
+}
+
+.listCantainer{
   display: flex;
   flex-direction: column;
-
+  margin-top: 5px;
 }
