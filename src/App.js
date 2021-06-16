@@ -1,7 +1,9 @@
+
 import React from 'react'
 import ToDoRender from './Todo/ToDoRender';
 //import React, { Component, useEffect } from 'react'
 //import Context from './context'
+
 import Calendar from "./components/Calendar";
 
 const style = {
@@ -9,8 +11,7 @@ const style = {
   margin: "50px auto"
 }
 
-function App() {
-  
+function App() {  
   return (
     <div>
       <ToDoRender/>,
@@ -21,6 +22,7 @@ function App() {
     
       </div>
     </div>
+
   )
 }
 
